@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUXE LOOP | אופנת יוקרה יד שנייה</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav container">
+      <div class="brand">LUXE LOOP</div>
+      <div class="nav-actions">
+        <button class="ghost" id="sellNavBtn">מכירת פריט</button>
+        <button class="pill" id="openCartBtn">עגלה <span id="cartCount">0</span></button>
+      </div>
+    </nav>
+
+    <section class="hero-content container">
+      <p class="tag">מרקטפלייס יוקרתי לפריטי יד שנייה נבחרים</p>
+      <h1>פריטי יוקרה על-זמניים.<br />במחיר חכם יותר.</h1>
+      <p class="sub">גלו אופנת יוקרה מאומתת, שעונים ואקססוריז יד שנייה.
+        קנייה בת-קיימא עם ביטחון מלא.</p>
+      <div class="search-row">
+        <input id="searchInput" type="text" placeholder="חיפוש מותגים, פריטים, קטגוריות..." />
+      </div>
+    </section>
+  </header>
+
+  <main class="container layout">
+    <aside class="filters card">
+      <h3>סינון</h3>
+      <label>קטגוריה
+        <select id="categoryFilter"></select>
+      </label>
+      <label>מצב הפריט
+        <select id="conditionFilter">
+          <option value="all">הכול</option>
+          <option>כמו חדש</option>
+          <option>מצוין</option>
+          <option>טוב</option>
+          <option>סביר</option>
+        </select>
+      </label>
+      <label>מחיר מקסימלי <span id="priceValue">₪18,000</span>
+        <input id="priceFilter" type="range" min="200" max="18000" value="18000" step="50" />
+      </label>
+      <button class="ghost full" id="resetFilters">איפוס</button>
+
+      <div class="divider"></div>
+      <h3>פרסום פריט</h3>
+      <form id="sellForm">
+        <input required name="title" placeholder="כותרת" />
+        <input required name="brand" placeholder="מותג" />
+        <input required name="price" type="number" min="1" placeholder="מחיר בש״ח" />
+        <select name="category" required>
+          <option value="">קטגוריה</option>
+          <option>תיקים</option>
+          <option>שעונים</option>
+          <option>נעליים</option>
+          <option>תכשיטים</option>
+          <option>ביגוד עליון</option>
+          <option>אקססוריז</option>
+        </select>
+        <select name="condition" required>
+          <option value="">מצב הפריט</option>
+          <option>כמו חדש</option>
+          <option>מצוין</option>
+          <option>טוב</option>
+          <option>סביר</option>
+        </select>
+        <textarea name="description" rows="4" placeholder="תיאור" required></textarea>
+        <input name="image" placeholder="קישור לתמונה (אופציונלי)" />
+        <button class="pill full" type="submit">פרסום מודעה</button>
+      </form>
+    </aside>
+
+    <section>
+      <div class="section-head">
+        <h2>פריטים זמינים</h2>
+        <span id="resultCount">0 פריטים</span>
+      </div>
+      <div id="listingGrid" class="grid"></div>
+    </section>
+  </main>
+
+  <dialog id="cartDialog">
+    <div class="cart-header">
+      <h3>תשלום</h3>
+      <button id="closeCart" class="ghost">סגירה</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="total">סה״כ: <strong id="cartTotal">₪0</strong></div>
+      <button id="checkoutBtn" class="pill full">השלמת רכישה</button>
+    </div>
+  </dialog>
+
+  <template id="itemTemplate">
+    <article class="item card">
+      <img alt="" class="item-image" />
+      <div class="item-body">
+        <div class="item-top">
+          <h4 class="item-title"></h4>
+          <button class="favorite" title="שמירת פריט">♡</button>
+        </div>
+        <p class="item-brand"></p>
+        <p class="item-desc"></p>
+        <div class="meta"></div>
+        <div class="item-bottom">
+          <div class="price"></div>
+          <button class="pill add-btn">הוספה לעגלה</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
